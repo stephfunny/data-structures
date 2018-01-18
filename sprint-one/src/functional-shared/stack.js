@@ -7,13 +7,19 @@ var extend = function(to, from) {
 var stackMethods = {};
 
 stackMethods.push = function(value) {
-  this[this.size] = value;
   this.count++;
+  this[this.count] = value;
+
 };
 
 stackMethods.pop = function() {
   this.count === 0 ? this.count : this.count--;
-  return this[this.size];
+  // var y = this.size;
+  // console.log(y);
+  console.log(this.count);
+  var x = (this[this.count + 1]);
+  delete this[this.count + 1];
+  return x;
 };
 
 stackMethods.size = function() {
@@ -30,20 +36,6 @@ var Stack = function() {
 
   extend(stack, stackMethods);
 
-  //console.log(stack.size());
-
   return stack;
 
-  // stack.pop = stackMethods.pop;
-  // stack.push = stackMethods.push;
-  // stack.size = stackMethods.size;
 };
-
-
-
-// var size = 0;
-
-
-
-// var stack = Stack();
-//console.log(stack.size);

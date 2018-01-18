@@ -1,29 +1,33 @@
 var Queue = function() {
   var someInstance = {};
-  var size = 0;
+  var count = 0;
+  var first = 0;
+  var last = 0;
   // Use an object with numeric keys to store values
   var storage = {};
 
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    someInstance[size] = value;
-    size++;
-
+    someInstance[last] = value;
+    count++;
+    last++;
   };
 
-  someInstance.dequeue = function() {
-    size === 0 ? size : size--;
-    var x = someInstance[0];
-    console.log('before deletion, x is ' + x);
-    delete someInstance[0];
-    console.log('after deletion, x is ' + x);
+//some[0] = 'a'; count = 1;
+// count = 0;
+//
 
+  someInstance.dequeue = function() {
+    count === 0 ? count : count--;
+    var x = someInstance[first];
+    delete someInstance[first];
+    first ++;
     return x;
   };
 
   someInstance.size = function() {
-    return size;
+    return count;
   };
 
   return someInstance;

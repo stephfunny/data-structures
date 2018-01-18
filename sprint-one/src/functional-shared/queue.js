@@ -3,6 +3,9 @@ var Queue = function() {
   // but try not not reference your old code in writing the new style.
   var queue = {};
   queue.count = 0;
+  queue.first = 0;
+  queue.last = 0;
+
   // var queue.push;
   // var queue.pop;
   //var queue.size = 0;
@@ -24,14 +27,16 @@ var extend = function(to, from) {
 var queueMethods = {};
 
 queueMethods.enqueue = function(value) {
-  this[this.size] = value;
+  this[this.last] = value;
   this.count++;
+  this.last++;
 };
 
 queueMethods.dequeue = function() {
   this.count === 0 ? this.count : this.count--;
-  var a = this[0];
-  delete this[0];
+  var a = this[this.first];
+  delete this[this.first];
+  this.first++;
   return a;
 };
 
